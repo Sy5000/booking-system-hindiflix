@@ -16,7 +16,6 @@ session_destroy();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     
-
     <script src=
 "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
     </script>
@@ -110,7 +109,7 @@ session_destroy();
     
     <br>
 
-    <div class="row align-items-md-stretch">
+    <!-- <div class="row align-items-md-stretch">
       <div class="col-md-6">
         <div class="h-100 p-5 text-bg-dark rounded-3">
           <h2>Change the background</h2>
@@ -125,7 +124,7 @@ session_destroy();
           <button class="btn btn-outline-secondary" type="button">Example button</button>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <footer class="pt-3 mt-4 text-muted border-top">
       &copy; 2022 <!-- replace -->
@@ -174,7 +173,7 @@ $.ajax({
     
         movDateBtn.forEach(el => el.addEventListener('click', event => {
           // user chooses date. pass value to handler
-          callSessionsHandler(el.value);
+          callSessionsHandler(el.value); // chosenDate
           
           // toggle active class
           document.querySelectorAll('.movDateBtn').forEach(el => el.classList.remove("active"));

@@ -31,9 +31,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   }
 
 }
-// echo "<pre>";
-// print_r($_SESSION);
-// echo "</pre>";
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
 ?>
 <!doctype html>
 <html>
@@ -64,10 +64,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       </div>
     </header>
 
-    <div class="col-md-5 col-lg-12 m-0">
+    <div class="col-md-12 col-lg-12 m-0">
 
       <div class="bg-light heroImgPortal mb-0">
-        <!--<p>mov title</p> -->
+      
+      <?php  ?>
+      
+      <p>mov title</p>
       </div>
 
       <div class="p-3 bg-dark mb-4 text-white">
@@ -86,13 +89,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING']; ?>" >
 
-          <h4>Ticket options</h4>
-          <div class="row">
-              <div class="col-md-4">
+          <div class="row mx-auto col-lg-7">
+            <h4>Ticket options</h4>
+          </div>
+
+          <div class="row justify-content-center">
+              <div class="col-lg-3">
                   <label for="adultTicket" class="form-label">Adults</label>
                   <input min="1" max="4" type="number" class="form-control" name="adultTicket" value="<?php echo (isset($_SESSION['adultTickets']) ? $_SESSION['adultTickets'] : ''); ?>" required>
               </div>
-              <div class="col-md-4">
+              <div class="col-lg-3">
                   <label for="childTicket" class="form-label">Children (18 and under)</label>
                   <input min="0" max="4" type="number" class="form-control" name="childTicket" value="<?php echo (isset($_SESSION['childTickets']) ? $_SESSION['childTickets'] : '0'); ?>" required>
               </div>
@@ -100,26 +106,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
           <hr class="my-4">
           
-          <h4>Booking details</h4>
-          <div class="row">
+          <div class="row mx-auto col-lg-7">
+            <h4>Booking details</h4>
+          </div>
 
-              <div class="col-md-4">
+          <div class="row justify-content-center">
+            
+            <div class="col-lg-3">
                   <label for="fName" class="form-label">First Name:</label>
                   <input type="text" class="form-control" name="firstName" value="<?php echo (isset($_SESSION['firstName']) ? $_SESSION['firstName'] : ''); ?>" required>
               </div>
-              <div class="col-md-4">
+              <div class="col-lg-3">
                   <label for="lName" class="form-label">Last Name:</label>
                   <input type="text" class="form-control" name="lastName" value="<?php echo (isset($_SESSION['lastName']) ? $_SESSION['lastName'] : ''); ?>" required>
               </div>
 
           </div>
 
-          <div class="col-md-8">
+          <div class="mx-auto  col-lg-6">
               <label for="email" class="form-label">E-mail:</label>
               <input type="email" class="form-control" name="email" value="<?php echo (isset($_SESSION['email']) ? $_SESSION['email'] : ''); ?>" required>
           </div>
 
-          <div class="col-md-8">
+          <div class="mx-auto  col-lg-6">
               <label for="mobile" class="form-label">Phone number:</label>
               <input type="tel" class="form-control" name="mobile" value="<?php echo (isset($_SESSION['mobile']) ? $_SESSION['mobile'] : ''); ?>" required>
               <span><?php echo (isset($mobileErr)) ? $mobileErr : '';  ?></span>

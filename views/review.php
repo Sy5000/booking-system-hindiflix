@@ -1,41 +1,6 @@
 <?php require('../model.php'); ?>
 <?php 
 session_start();
-
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-  $patronID = add_patron($_SESSION['firstName'], $_SESSION['lastName'], $_SESSION['email'], $_SESSION['mobile']);
-
-  if($patronID){
-
-   // calculate # of booking records
-   $reservations = $_SESSION['adultTickets'] + $_SESSION['childTickets'];
-   
-   echo "Thank you your booking reference is : S-", $_SESSION['sessionID'], " R-"; 
-
-    for($i=1; $i <= $reservations; $i++){
-
-      // record the bookings, output 
-      $bookingID = addBooking($patronID, $_SESSION['sessionID']);
-      
-      echo $bookingID;
-      
-      if($i != $reservations){
-        echo "-";
-      }
-      
-    }
-
-   echo ".";
-
-  } else {
-    echo "Could not create booking!";
-  }
-
-}
- echo "<pre>";
- print_r($_SESSION);
- echo "</pre>";
 ?>
 <!doctype html>
 <html>
@@ -47,8 +12,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--AJAX-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+  <!--MODAL-->
+  <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Launch static backdrop modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- / MODAL-->
 <main>
   
   <div class="container py-4">
@@ -81,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       </div>
 
       
-      <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+      <!-- <form method="POST" action="<?php //echo $_SERVER['PHP_SELF']; ?>" > -->
       <br>  
       <h3>Booking Summary</h3>
         <hr class="my-4">
@@ -101,15 +94,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <p></p>
         <br>
         <a href="tickets.php" ><input type="button" value="back / update" ></a>
-        <input type="submit" name="submit" value="Confirm reservation">
-        </form>
+        <input type="submit" name="submit" id="bookingBtn" value="Confirm reservation">
+        <!-- </form> -->
       
-      <hr class="my-4">
-
-
-      </div>
-    </div>
-
+      <hr class="my-4" />
     
 
     <footer class="pt-3 mt-4 text-muted border-top">
@@ -119,3 +107,35 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </main>
 </body>
 </html>
+<script>
+// AJAX 
+// insert a new patron ✅
+// insert a new booking ✅
+// open modal ✅
+// insert booking ID to the DOM (modal)
+const bookingBtn = document.getElementById('bookingBtn');
+
+$(bookingBtn).click(function(){
+
+$.ajax({
+    url: 'ajaxCreateBooking.php',
+    type: "POST",
+    // data: ({ movieID: movieID }),
+    cache: false,
+    success: function(response) {
+
+      // no useful data returned
+      if(response === ''){
+     console.log('no res');
+      }
+      // ajax created a patron and made a booking
+      if(response){
+       console.log('res', response);
+       // innerhtml the response to the modal
+       //open modal
+       $("#staticBackdrop").modal("show");
+      }
+    }
+  });
+});
+</script>

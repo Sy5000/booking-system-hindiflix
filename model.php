@@ -56,8 +56,8 @@ function showSessionTimes($movieID,$sessionDate){
   global $pdo;
   $movieTimes = $pdo->query("SELECT *
   FROM Sessions 
-  WHERE sessionDate LIKE '%${sessionDate}%'
-  AND movieID = ${movieID}");
+  WHERE sessionDate LIKE '%{$sessionDate}%'
+  AND movieID = {$movieID}");
 
   $counter = 0;
 
@@ -70,7 +70,8 @@ function showSessionTimes($movieID,$sessionDate){
       $counter++;
     }
 
-    echo "<td><a href='tickets.php?movieID={$movieID}&sessionID={$row['sessionID']}'><button class='btn btn-outline-secondary'>ID={$row['sessionID']} " . $time->format('H:i A') . "</button></a></td>";
+    echo "<td><a href='tickets.php?movieID={$movieID}&sessionID={$row['sessionID']}'><button class='btn btn-outline-secondary'> 
+    <!--ID={$row['sessionID']}--> " . $time->format('h:i A') . "</button></a></td>";
   }
 }
 
