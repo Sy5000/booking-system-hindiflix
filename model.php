@@ -2,7 +2,7 @@
 <?php
 // functions 
 // default. active '1' || user requests coming soon '0'
-function getMovieData($movieStatus){
+function getMoviesData($movieStatus){
   global $pdo;
   $movieTable = $pdo->query('SELECT * FROM Movie WHERE active =' . $movieStatus);
   return $movieTable;
@@ -22,7 +22,7 @@ function showMovieCards($movieTable){
   }
 }
 
-function getSessionData($movieID){
+function getSessionsData($movieID){
   global $pdo;
   $movieSessions = $pdo->query('SELECT * FROM Sessions WHERE MovieID =' . $movieID);
   return $movieSessions;
@@ -106,4 +106,7 @@ function addBooking($patronID,$sessionID){
   $bookingID = $pdo->lastInsertId();
   return $bookingID;
 }
+// review page functions 
+
+
 ?>

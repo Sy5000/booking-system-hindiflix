@@ -1,6 +1,8 @@
 <?php require('../model.php'); ?>
 <?php 
 session_start();
+$movieID = $_SESSION['movieID'];
+$sessionID = $_SESSION['sessionID'];
 ?>
 <!doctype html>
 <html>
@@ -19,20 +21,52 @@ session_start();
 <body>
   <!--MODAL-->
   <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
   Launch static backdrop modal
-</button>
+</button> -->
 
+<!------PHP REVIEW DATA------->
+<?php 
+
+ function getMovieData($movieID){
+  global $pdo;
+  $result = $pdo->query('SELECT * FROM Movie WHERE movieID =' . $movieID);
+  // fetch() is method for single row array 
+  $movieData = $result->fetch();
+  return $movieData;
+}
+
+function getMovieSession($sessionID){
+  global $pdo;
+  $result = $pdo->query('SELECT * FROM Sessions WHERE sessionID =' . $sessionID);
+  $movieSession = $result->fetch();
+  
+  $timeStamp = date_create($movieSession[2]);
+  return $timeStamp;
+  // echo $timeStamp->format('h:i a ');
+  // echo $timeStamp->format('l jS \o\f F ');
+  // echo '<p>result?</p>';
+}
+
+$movieData = getMovieData($movieID); //model
+$timeStamp = getMovieSession($sessionID); //model 
+
+?>
+<!------PHP REVIEW DATA------->
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Movie : <?php echo $movieData['title']; ?></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <p><span id="reservation"></span></p>
+        <p>Date : <?php echo $timeStamp->format('l jS \o\f F '); ?></p>
+        <p>Session time : <?php echo $timeStamp->format('h:i a '); ?></p>
+        <p>Patron : <?php echo $_SESSION['lastName'], ', ' , $_SESSION['firstName']; ?></p>
+        <p>Admit <?php echo $_SESSION['adultTickets'] + $_SESSION['childTickets']; ?></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -71,9 +105,9 @@ session_start();
 
       <div class="bg-light heroImgPortal">
         <p>Movie Title</p>
+        
       </div>
 
-      
       <!-- <form method="POST" action="<?php //echo $_SERVER['PHP_SELF']; ?>" > -->
       <br>  
       <h3>Booking Summary</h3>
@@ -114,6 +148,7 @@ session_start();
 // open modal ✅
 // insert booking ID to the DOM (modal)
 const bookingBtn = document.getElementById('bookingBtn');
+const reservation = document.getElementById('reservation');
 
 $(bookingBtn).click(function(){
 
@@ -132,6 +167,7 @@ $.ajax({
       if(response){
        console.log('res', response);
        // innerhtml the response to the modal
+       reservation.innerHTML = response;
        //open modal
        $("#staticBackdrop").modal("show");
       }

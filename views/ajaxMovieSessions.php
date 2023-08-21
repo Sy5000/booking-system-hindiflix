@@ -9,7 +9,7 @@ $_SESSION['movieID'] = $_POST['movieID'];
 
         $movieID = $_SESSION['movieID'];
 
-        $movieSessions = getSessionData($movieID); // model 
+        $movieSessions = getSessionsData($movieID); // model 
 
         showSessionDates($movieSessions); //view 
 

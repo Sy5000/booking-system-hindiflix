@@ -9,7 +9,7 @@ if(isset($_SESSION['movieID'])){
 
           $movieID = $_SESSION['movieID'];
 
-          $movieSessions = getSessionData($movieID); // model 
+          $movieSessions = getSessionsData($movieID); // model 
           // return every session of movie by ID 
 
           showSessionDates($movieSessions); //view 
