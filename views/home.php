@@ -64,7 +64,7 @@ session_destroy();
             <div class="scroll-content"> 
                 <?php
                 $movieTable = getMoviesData($movieStatus); //model
-                showMovieCards($movieTable); // view    
+                showMoviesCards($movieTable); // view    
                 ?>    
             </div>
         </div>

@@ -28,26 +28,6 @@ $sessionID = $_SESSION['sessionID'];
 <!------PHP REVIEW DATA------->
 <?php 
 
- function getMovieData($movieID){
-  global $pdo;
-  $result = $pdo->query('SELECT * FROM Movie WHERE movieID =' . $movieID);
-  // fetch() is method for single row array 
-  $movieData = $result->fetch();
-  return $movieData;
-}
-
-function getMovieSession($sessionID){
-  global $pdo;
-  $result = $pdo->query('SELECT * FROM Sessions WHERE sessionID =' . $sessionID);
-  $movieSession = $result->fetch();
-  
-  $timeStamp = date_create($movieSession[2]);
-  return $timeStamp;
-  // echo $timeStamp->format('h:i a ');
-  // echo $timeStamp->format('l jS \o\f F ');
-  // echo '<p>result?</p>';
-}
-
 $movieData = getMovieData($movieID); //model
 $timeStamp = getMovieSession($sessionID); //model 
 

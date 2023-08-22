@@ -8,7 +8,7 @@ function getMoviesData($movieStatus){
   return $movieTable;
 }
 
-function showMovieCards($movieTable){
+function showMoviesCards($movieTable){
   foreach ($movieTable as $row)
   {
     echo '<div class="card d-inline-block" data-movieID=' . $row['movieID'] . '>';
@@ -50,6 +50,7 @@ function showSessionDates($movieSessions){
     echo "<br>";
   }
 }
+
 // generate movie sessions by date chosen
 function showSessionTimes($movieID,$sessionDate){
 
@@ -107,6 +108,23 @@ function addBooking($patronID,$sessionID){
   return $bookingID;
 }
 // review page functions 
+function getMovieData($movieID){
+  global $pdo;
+  $result = $pdo->query('SELECT * FROM Movie WHERE movieID =' . $movieID);
+  // fetch() is method for single row array 
+  $movieData = $result->fetch();
+  return $movieData;
+}
 
+function getMovieSession($sessionID){
+  global $pdo;
+  $result = $pdo->query('SELECT * FROM Sessions WHERE sessionID =' . $sessionID);
+  $movieSession = $result->fetch();
+  
+  $timeStamp = date_create($movieSession[2]); // i = ['sessionDate']
+  return $timeStamp;
+  // echo $timeStamp->format('h:i a ');
+  // echo $timeStamp->format('l jS \o\f F ');
+}
 
 ?>

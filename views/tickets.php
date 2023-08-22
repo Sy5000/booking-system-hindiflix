@@ -135,8 +135,16 @@ echo "</pre>";
           </div>
 
           <br>
-          <input type="submit" name="submit" value="next">
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <!-- <button class="btn btn-primary" type="button">Button</button> -->
+            <button class="btn btn-dark" type="submit" name="submit">Next</button>
+          </div>
+          
+          <!-- <input class="btn btn-dark" type="submit" name="submit" value="next"> -->
+          
+
         </form>
+
       
         <hr class="my-4">
 
