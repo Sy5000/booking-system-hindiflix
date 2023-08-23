@@ -31,9 +31,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   }
 
 }
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>";
+// echo "<pre>";
+// print_r($_SESSION);
+// echo "</pre>";
+?>
+<?php 
+$movieID = $_SESSION['movieID'];
+$sessionID = $_SESSION['sessionID'];
+$movieData = getMovieData($movieID); //model
+$timeStamp = getMovieSession($sessionID); //model 
 ?>
 <!doctype html>
 <html>
@@ -64,93 +70,103 @@ echo "</pre>";
       </div>
     </header>
 
-    <div class="col-md-12 col-lg-12 m-0">
-
-      <div class="bg-light heroImgPortal mb-0">
-      
-      <?php  ?>
-      
-      <p>mov title</p>
-      </div>
-
-      <div class="p-3 bg-dark mb-4 text-white">
-
-        <!-- <h1 class="">Dashboard</h1> -->
-
-        <nav class="d-flex" aria-label="breadcrumb">
-          <h6 class="mb-0">
-            <a href="home.php" class="text-reset">Home</a>
-            <span>/</span>
-            <a href="#" class="text-reset" aria-current="page">Tickets</a>
-          </h6>
-        </nav>
+    <div class="mb-0 heroImgPortal" >
+      <!-- <img src="https://upload.wikimedia.org/wikipedia/en/9/99/Dangal_Poster.jpg" class="heroBkg" alt="" > -->
+      <img src="<?php echo $movieData['thumb']; ?>" class="heroBkg" alt="<?php echo $movieData['title']; ?> bollywood movie poster promo image XL" >
         
-      </div>
+      <div class="mask">
 
-        <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING']; ?>" >
-
-          <div class="row mx-auto col-lg-7">
-            <h4>Ticket options</h4>
+        <div class="mask-content">
+          <div>
+            <p>Movie : </p>
+            <h3><?php echo $movieData['title']; ?></h3>
+            <p><?php echo $movieData['year']; ?></p>
           </div>
 
-          <div class="row justify-content-center">
-              <div class="col-lg-3">
-                  <label for="adultTicket" class="form-label">Adults</label>
-                  <input min="1" max="4" type="number" class="form-control" name="adultTicket" value="<?php echo (isset($_SESSION['adultTickets']) ? $_SESSION['adultTickets'] : ''); ?>" required>
-              </div>
-              <div class="col-lg-3">
-                  <label for="childTicket" class="form-label">Children (18 and under)</label>
-                  <input min="0" max="4" type="number" class="form-control" name="childTicket" value="<?php echo (isset($_SESSION['childTickets']) ? $_SESSION['childTickets'] : '0'); ?>" required>
-              </div>
-          </div>
-
-          <hr class="my-4">
-          
-          <div class="row mx-auto col-lg-7">
-            <h4>Booking details</h4>
-          </div>
-
-          <div class="row justify-content-center">
-            
-            <div class="col-lg-3">
-                  <label for="fName" class="form-label">First Name:</label>
-                  <input type="text" class="form-control" name="firstName" value="<?php echo (isset($_SESSION['firstName']) ? $_SESSION['firstName'] : ''); ?>" required>
-              </div>
-              <div class="col-lg-3">
-                  <label for="lName" class="form-label">Last Name:</label>
-                  <input type="text" class="form-control" name="lastName" value="<?php echo (isset($_SESSION['lastName']) ? $_SESSION['lastName'] : ''); ?>" required>
-              </div>
-
-          </div>
-
-          <div class="mx-auto  col-lg-6">
-              <label for="email" class="form-label">E-mail:</label>
-              <input type="email" class="form-control" name="email" value="<?php echo (isset($_SESSION['email']) ? $_SESSION['email'] : ''); ?>" required>
-          </div>
-
-          <div class="mx-auto  col-lg-6">
-              <label for="mobile" class="form-label">Phone number:</label>
-              <input type="tel" class="form-control" name="mobile" value="<?php echo (isset($_SESSION['mobile']) ? $_SESSION['mobile'] : ''); ?>" required>
-              <span><?php echo (isset($mobileErr)) ? $mobileErr : '';  ?></span>
-          </div>
-
-          <br>
-          <div class="d-grid gap-2 col-6 mx-auto">
-            <!-- <button class="btn btn-primary" type="button">Button</button> -->
-            <button class="btn btn-dark" type="submit" name="submit">Next</button>
+          <div>
+            <img src="<?php echo $movieData['thumb']; ?>" class="movThumb" alt="<?php echo $movieData['title']; ?> bollywood movie poster promo image thumbnail">
           </div>
           
-          <!-- <input class="btn btn-dark" type="submit" name="submit" value="next"> -->
+          <div>
+          <p>Screening : </p>
+            <h4><?php echo $timeStamp->format('l'); ?></h4>
+            <p><?php echo $timeStamp->format('h:i a '); ?></p>
+          </div>
+        </div>
           
-
-        </form>
-
-      
-        <hr class="my-4">
-
-      </div>
-
+        </div>
+        
     </div>
+
+    <div class="p-3 bg-dark mb-4 text-white">
+
+      <nav class="d-flex" aria-label="breadcrumb">
+        <h6 class="mb-0">
+          <a href="home.php" class="text-reset">Home</a>
+          <span>/</span>
+          <a href="#" class="text-reset" aria-current="page">Tickets</a>
+        </h6>
+      </nav>
+      
+    </div>
+
+    <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING']; ?>" >
+
+      <div class="row mx-auto col-lg-7">
+        <h4>Ticket options</h4>
+      </div>
+
+      <div class="row justify-content-center">
+          <div class="col-lg-3">
+              <label for="adultTicket" class="form-label">Adults</label>
+              <input min="1" max="4" type="number" class="form-control" name="adultTicket" value="<?php echo (isset($_SESSION['adultTickets']) ? $_SESSION['adultTickets'] : ''); ?>" required>
+          </div>
+          <div class="col-lg-3">
+              <label for="childTicket" class="form-label">Children (18 and under)</label>
+              <input min="0" max="4" type="number" class="form-control" name="childTicket" value="<?php echo (isset($_SESSION['childTickets']) ? $_SESSION['childTickets'] : '0'); ?>" required>
+          </div>
+      </div>
+
+      <hr class="my-4">
+      
+      <div class="row mx-auto col-lg-7">
+        <h4>Booking details</h4>
+      </div>
+
+      <div class="row justify-content-center">
+        
+        <div class="col-lg-3">
+              <label for="fName" class="form-label">First Name:</label>
+              <input type="text" class="form-control" name="firstName" value="<?php echo (isset($_SESSION['firstName']) ? $_SESSION['firstName'] : ''); ?>" required>
+          </div>
+          <div class="col-lg-3">
+              <label for="lName" class="form-label">Last Name:</label>
+              <input type="text" class="form-control" name="lastName" value="<?php echo (isset($_SESSION['lastName']) ? $_SESSION['lastName'] : ''); ?>" required>
+          </div>
+
+      </div>
+
+      <div class="mx-auto  col-lg-6">
+          <label for="email" class="form-label">E-mail:</label>
+          <input type="email" class="form-control" name="email" value="<?php echo (isset($_SESSION['email']) ? $_SESSION['email'] : ''); ?>" required>
+      </div>
+
+      <div class="mx-auto  col-lg-6">
+          <label for="mobile" class="form-label">Phone number:</label>
+          <input type="tel" class="form-control" name="mobile" value="<?php echo (isset($_SESSION['mobile']) ? $_SESSION['mobile'] : ''); ?>" required>
+          <span><?php echo (isset($mobileErr)) ? $mobileErr : '';  ?></span>
+      </div>
+
+      <br>
+
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <!-- <button class="btn btn-primary" type="button">Button</button> -->
+        <button class="btn btn-dark" type="submit" name="submit">Next</button>
+      </div>
+      
+      <!-- <input class="btn btn-dark" type="submit" name="submit" value="next"> -->
+      
+    </form>
 
     <footer class="pt-3 mt-4 text-muted border-top">
       &copy; 2022 <!-- replace -->

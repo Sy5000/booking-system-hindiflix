@@ -46,6 +46,35 @@
   object-fit: cover;
   height: 340px;
   width: 100%;
+  /* mask */
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+.heroBkg {
+  width: 100%;
+  transform: translateY(-15%);
+}
+.heroImgPortal .mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.heroImgPortal .mask .mask-content {
+  height: 100%;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: azure;
+}
+.movThumb {
+  height: 250px;
+  margin: 2rem;
 }
 .btn {
   padding-left: 50px;
