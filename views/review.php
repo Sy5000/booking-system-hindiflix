@@ -14,7 +14,8 @@ $sessionID = $_SESSION['sessionID'];
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <!--barcode wingdings-->
+    <link href='https://fonts.googleapis.com/css?family=Libre Barcode 39' rel='stylesheet'>
     <!--AJAX-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -27,35 +28,15 @@ $sessionID = $_SESSION['sessionID'];
 
 <!------PHP REVIEW DATA------->
 <?php 
+// echo "<pre>";
+// print_r($_SESSION);
+// echo "</pre>";
 
 $movieData = getMovieData($movieID); //model
 $timeStamp = getMovieSession($sessionID); //model 
 
 ?>
 <!------PHP REVIEW DATA------->
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Movie : <?php echo $movieData['title']; ?></h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p><span id="reservation"></span></p>
-        <p>Date : <?php echo $timeStamp->format('l jS \o\f F '); ?></p>
-        <p>Session time : <?php echo $timeStamp->format('h:i a '); ?></p>
-        <p>Patron : <?php echo $_SESSION['lastName'], ', ' , $_SESSION['firstName']; ?></p>
-        <p>Admit <?php echo $_SESSION['adultTickets'] + $_SESSION['childTickets']; ?></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
-  </div>
-</div>
-  <!-- / MODAL-->
 <main>
   
   <div class="container py-4">
@@ -73,20 +54,45 @@ $timeStamp = getMovieSession($sessionID); //model
       </div>
     </header>
 
-      <div class="col-md-5 col-lg-12">
-      
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-            <li class="breadcrumb-item"><a href="javascript:history.back()">Tickets</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Confirm Booking</li>
-          </ol>
-        </nav>
-
-      <div class="bg-light heroImgPortal">
-        <p>Movie Title</p>
+    <div class="mb-0 heroImgPortal" >
+      <!-- <img src="https://upload.wikimedia.org/wikipedia/en/9/99/Dangal_Poster.jpg" class="heroBkg" alt="" > -->
+      <img src="<?php echo $movieData['thumb']; ?>" class="heroBkg" alt="<?php echo $movieData['title']; ?> bollywood movie poster promo image XL" >
         
-      </div>
+      <div class="mask">
+
+        <div class="mask-content">
+          <div>
+            <p>Movie : </p>
+            <h3><?php echo $movieData['title']; ?></h3>
+            <p><?php echo $movieData['year']; ?></p>
+          </div>
+
+          <div>
+            <img src="<?php echo $movieData['thumb']; ?>" class="movThumb" alt="<?php echo $movieData['title']; ?> bollywood movie poster promo image thumbnail">
+          </div>
+          
+          <div>
+          <p>Screening : </p>
+            <h4><?php echo $timeStamp->format('l'); ?></h4>
+            <p><?php echo $timeStamp->format('h:i a '); ?></p>
+          </div>
+        </div>
+          
+        </div>
+        
+    </div>
+
+    <div class="p-3 bg-dark mb-4">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb text-white">
+          <li class="breadcrumb-item"><a class="link-light" href="home.php">Home</a></li>
+          <li class="breadcrumb-item"><a class="link-light" href="javascript:history.back()">Tickets</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Confirm Booking</li>
+        </ol>
+      </nav>
+    </div>
+
+      <div class="row mx-auto col-lg-7">
 
       <!-- <form method="POST" action="<?php //echo $_SERVER['PHP_SELF']; ?>" > -->
       <br>  
@@ -107,17 +113,53 @@ $timeStamp = getMovieSession($sessionID); //model
 
         <p></p>
         <br>
-        <a href="tickets.php" ><input type="button" value="back / update" ></a>
-        <input type="submit" name="submit" id="bookingBtn" value="Confirm reservation">
-        <!-- </form> -->
-      
-      <hr class="my-4" />
-    
+        <div class="d-grid gap-2 col-12 mx-auto">
 
+        <a href="tickets.php" ><input class="btn btn-warning col-12" value="back / update" ></a>
+        <input class="btn btn-success" type="submit" name="submit" id="bookingBtn" value="Confirm reservation" role="button">
+        </div>
+        <!-- </form> -->
+    
     <footer class="pt-3 mt-4 text-muted border-top">
       &copy; 2022 <!-- replace -->
     </footer>
   </div>
+
+  <!-- Admit : <?php echo $_SESSION['adultTickets'] + $_SESSION['childTickets']; ?> patron(s) -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-light bg-opacity-90 border border-5 rounded-4">
+        <div class="modal-header">
+          <h1 class="modal-title fs-4" id="staticBackdropLabel">
+           Movie : <?php echo $movieData['title']; ?>
+          </h1>
+          
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-0"><span class="faux-barcode">Faux Barcode Area</span></p>
+          <p class="pt-0"><span id="reservation"></span></p>
+          <hr>
+          <p>Patron : <strong><?php echo $_SESSION['lastName'], ', ' , $_SESSION['firstName']; ?></strong></p>
+          <p>Date : <?php echo $timeStamp->format('l\, jS \o\f F '); ?></p>
+          <p>Session time : <?php echo $timeStamp->format('h:i a '); ?></p>  
+        </div>
+
+        <div class="modal-footer">
+         
+             <p><em>Admit : <?php echo $_SESSION['adultTickets'] + $_SESSION['childTickets']; ?> patron(s)</em></p>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+     
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- / MODAL-->
+
 </main>
 </body>
 </html>

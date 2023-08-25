@@ -98,16 +98,13 @@ $timeStamp = getMovieSession($sessionID); //model
         
     </div>
 
-    <div class="p-3 bg-dark mb-4 text-white">
-
-      <nav class="d-flex" aria-label="breadcrumb">
-        <h6 class="mb-0">
-          <a href="home.php" class="text-reset">Home</a>
-          <span>/</span>
-          <a href="#" class="text-reset" aria-current="page">Tickets</a>
-        </h6>
+    <div class="p-3 bg-dark mb-4">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb text-white">
+          <li class="breadcrumb-item"><a class="link-light" href="home.php">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Tickets</li>
+        </ol>
       </nav>
-      
     </div>
 
     <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING']; ?>" >

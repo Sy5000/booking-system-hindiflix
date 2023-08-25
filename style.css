@@ -76,6 +76,12 @@
   height: 250px;
   margin: 2rem;
 }
+
+.faux-barcode {
+  font-family: "Libre Barcode 39";
+  font-size: 48px;
+  padding: 16px 32px 0 32px;
+}
 .btn {
   padding-left: 50px;
 }
