@@ -2,6 +2,17 @@
   border: 2px solid red;
   font-size: 16px;
 } */
+.logo {
+  width: 200px;
+  height: 60px;
+  background-color: black;
+  /* border: 5px solid black; */
+  transform: skew(-20deg) translateY(-25px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
 .scroll-wrapper {
   background-color: lightblue;
   max-width: 1300px;
@@ -10,7 +21,6 @@
 .scroll-content {
   min-width: max-content;
   padding: 0.5rem;
-
   display: flex;
   flex-wrap: nowrap;
 }
@@ -42,6 +52,11 @@
   width: 100%;
   /* max-width: 678px; */
 }
+.heroIndex {
+  width: 100%;
+  transform: translateY(-42.5%);
+  opacity: 90%;
+}
 .heroImgPortal {
   object-fit: cover;
   height: 340px;
@@ -65,7 +80,7 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.75);
 }
-.heroImgPortal .mask .mask-content {
+.mask .mask-content {
   height: 100%;
   display: flex !important;
   align-items: center !important;
@@ -77,6 +92,19 @@
   margin: 2rem;
 }
 
+.snacksOne {
+  /* display: flex;
+  justify-content: center;
+  flex-direction: column; */
+  background-image: url("views/images/snacksThree.jpg");
+  background-size: cover;
+  /* height: auto; */
+}
+.groupOne {
+  background-image: url("views/images/groupOne.jpg");
+  background-size: cover;
+  /* height: auto; */
+}
 .faux-barcode {
   font-family: "Libre Barcode 39";
   font-size: 48px;
@@ -110,6 +138,9 @@ ol > breadcrumb {
   color: blueviolet;
 }
 
+.progress {
+  margin: 10px 0px;
+}
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;

@@ -10,43 +10,44 @@ session_destroy();
 <!doctype html>
 <html>
 <head>
+
     <title>Cinema App</title>
     <link rel="stylesheet" href="../style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <script src=
-"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-    </script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
 </head>
+
 <body>
-<main>
+  <main>
   
-  <div class="container py-4">
+    <div class="container py-4">
 
-    <header class="pb-3 mb-4 border-bottom">
+      <header class="pb-3 mb-4 border-bottom">
 
-      <div class="d-flex justify-content-between">
-        <div class="">
-          <a href="#" class="align-items-center text-dark text-decoration-none">
-            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="me-2" viewBox="0 0 118 94" role="img"><title>Bootstrap</title><path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z" fill="currentColor"></path></svg> -->
-            <span class="fs-4">HindiFlix Cinema House.</span>
-          </a>
+        <div class="d-flex justify-content-between">
+          <div>
+            <a href="#" class="align-items-center text-dark text-decoration-none">
+              <span class="fs-4">HindiFlix Cinema House.</span>
+            </a>
+          </div>
+
+          <div class="logo"><h2>HF</h2></div>
+
+          <div class="p-2">
+            <?php $anchorLink = 'movies-section'; // is this required?? ?>
+            <a href="home.php" class="p-2">Now Showing</a>
+            <a href="?movieStatus=0" class="p-2">Coming Soon</a>
+          </div>
         </div>
-        <div class="p-2">
-          <?php $anchorLink = 'movies-section'; ?>
-          <a href="home.php" class="p-2">Now Showing</a>
-          <a href="?movieStatus=0" class="p-2">Coming Soon</a>
-        </div>
-      </div>
+
     </header>
 
-    <div>
-    <img src="images/imgThree.jpg" class="heroImg" alt="...">
+    <div class="heroImgPortal">
+      <img src="images/cinemaTwo.jpg" class="heroImgBkg heroIndex" alt="...">
     </div>
 
     <br>
@@ -58,6 +59,7 @@ session_destroy();
     // page default =1 ~active movies |  =0 ~ inactive movies
     echo ($movieStatus === '1') ? '<p>Now Showing</p>' : '<p>Coming Soon</p>' ;
     ?>
+
     <div class="p-2 mb-0 bg-light rounded-3 scroll-wrapper">
         <div class="container-fluid py-0 ">
             <!-- <div class="scroll-wrapper"> -->
@@ -84,7 +86,6 @@ session_destroy();
         <li class="nav-item">
           <a class="nav-link" href="#">Active</a>
         </li> -->
-
       </ul>
     
 
@@ -109,25 +110,74 @@ session_destroy();
     
     <br>
 
-    <!-- <div class="row align-items-md-stretch">
+    <div class="row align-items-md-stretch">
+      
       <div class="col-md-6">
-        <div class="h-100 p-5 text-bg-dark rounded-3">
-          <h2>Change the background</h2>
-          <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
-          <button class="btn btn-outline-light" type="button">Example button</button>
+   
+        <div class="rounded-3 snacksOne p-5 h-100">
+            
+           <div class="rounded-3 opacity-75 text-light bg-dark p-5">
+  
+                <h2>Combo Snack Deal</h2>
+                <p class="mb-5 mt-5">
+                Don't miss out on the mouth-watering snacks available at the cinema!
+                We have a wide range of delicious treats from traditional popcorn to Choc Top Ice Creams. Not only will you satisfy your cravings, but you'll also be supporting your local theater. So head over to the snack bar and treat yourself to some delicious goodies to enjoy during the show. Bon appétit!</p>
+              <button class="btn btn-outline-light" type="button">View Selection</button>
+         
+          </div>
+          
         </div>
+
       </div>
+
       <div class="col-md-6">
-        <div class="h-100 p-5 bg-light border rounded-3">
-          <h2>Add borders</h2>
-          <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-          <button class="btn btn-outline-secondary" type="button">Example button</button>
-        </div>
-      </div>
-    </div> -->
+
+        <div class="rounded-3 groupOne p-5 h-100" style="display:flex; align-items:flex-end;opacity:90%;">
+
+          <div class="rounded-3 bg-warning text-dark p-4 w-100" style="opacity:90%;" >
+            
+            <h2>Group Discounts</h2>
+            <p>A perfect opportunity to get together with friends or family and enjoy a movie night without breaking the bank.</p>
+            <button class="btn btn-outline-dark" type="button">View Deals</button>
+            
+          </div>
+
+        </div>  
+      </div>  
+        <!-- <div class="rounded-3 groupOne p-5">
+
+          <div class="rounded-3 text-light p-5">
+            <div class="bg-dark" style="width:90%;z-index:1;height:100%;"></div>
+            <h2>Group Discounts</h2>
+            <br>
+            <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
+            <button class="btn btn-outline-info" type="button">Example button</button>
+          </div>
+
+        </div>   -->
+      
+
+
+      <!-- <div class="col-md-6">
+
+        <div class="rounded-3 groupOne p-5">
+
+          <div class="rounded-3 opacity-75 text-light p-5">
+            <div class="bg-dark" style="width:90%;z-index:1;height:100%;"></div>
+            <h2>Group Discounts</h2>
+            <br>
+            <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
+            <button class="btn btn-outline-info" type="button">Example button</button>
+          </div>
+
+        </div>  
+      </div> -->
+
+    </div>
+
 
     <footer class="pt-3 mt-4 text-muted border-top">
-      &copy; 2022 <!-- replace -->
+      &copy; 2023 <!-- replace -->
     </footer>
   </div>
 </main>

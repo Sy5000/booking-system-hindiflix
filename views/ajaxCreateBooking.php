@@ -11,7 +11,7 @@ require('../model.php');
        // calculate # of booking records
        $reservations = $_SESSION['adultTickets'] + $_SESSION['childTickets'];
        
-       echo "<p>Thank you your booking reference is : </p> <p>S-", $_SESSION['sessionID'], " R-"; 
+       echo "<p>Enjoy the screening! Your booking reference is : </p> <p>S-", $_SESSION['sessionID'], " R-"; 
        
         for($i=1; $i <= $reservations; $i++){
     
