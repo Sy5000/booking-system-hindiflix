@@ -168,7 +168,7 @@ $timeStamp = getMovieSession($sessionID); //model
         <button class="btn btn-dark" type="submit" name="submit">Next</button>
         
         <div class="progress">
-          <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-label="Success striped example" style="width: 85%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">85%</div>
+          <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-label="Success striped example" style="width: 50%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">50%</div>
         </div>
       
       </div>

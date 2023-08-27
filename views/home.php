@@ -35,7 +35,9 @@ session_destroy();
             </a>
           </div>
 
-          <div class="logo"><h2>HF</h2></div>
+          <div class="logo">
+            <h3>HF</h3>
+          </div>
 
           <div class="p-2">
             <?php $anchorLink = 'movies-section'; // is this required?? ?>
@@ -119,9 +121,8 @@ session_destroy();
            <div class="rounded-3 opacity-75 text-light bg-dark p-5">
   
                 <h2>Combo Snack Deal</h2>
-                <p class="mb-5 mt-5">
-                Don't miss out on the mouth-watering snacks available at the cinema!
-                We have a wide range of delicious treats from traditional popcorn to Choc Top Ice Creams. Not only will you satisfy your cravings, but you'll also be supporting your local theater. So head over to the snack bar and treat yourself to some delicious goodies to enjoy during the show. Bon appétit!</p>
+                <p class="mt-4">
+                We have a wide range of delicious treats from traditional popcorn to Choc Top Ice Creams. So head over to the snack bar and treat yourself to some delicious goodies to enjoy during the show.</p><p class="mb-4"> Bon appétit!</p>
               <button class="btn btn-outline-light" type="button">View Selection</button>
          
           </div>
@@ -137,7 +138,7 @@ session_destroy();
           <div class="rounded-3 bg-warning text-dark p-4 w-100" style="opacity:90%;" >
             
             <h2>Group Discounts</h2>
-            <p>A perfect opportunity to get together with friends or family and enjoy a movie night without breaking the bank.</p>
+            <p class="mt-4 mb-4">A perfect opportunity to get together with friends or family and enjoy a movie night without breaking the bank.</p>
             <button class="btn btn-outline-dark" type="button">View Deals</button>
             
           </div>
