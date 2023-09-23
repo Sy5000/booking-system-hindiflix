@@ -6,4 +6,5 @@ TO DO
 2. rename repo
 3. containerize with Docker
 4. package site with NPM
+5. naming convention ✅
  -->
