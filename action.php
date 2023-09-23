@@ -1,4 +1,3 @@
-
 <?php
  
  // Checking, if post value is
